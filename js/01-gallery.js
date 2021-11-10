@@ -26,18 +26,24 @@ const listEl = galleryItems
 //   Вводим галлерею на страницу
 galleryEl.insertAdjacentHTML("afterbegin", listEl);
 
-galleryEl.addEventListener("click", onGetLargeImage);
+galleryEl.addEventListener("click", replacementLinkImg);
 
-function onGetLargeImage(event) {
+// функция замены preview на original
+function replacementLinkImg(event) {
+  //блокируем действие браузера по умолчанию при клике, переход по ссылке не произойдет
   event.preventDefault();
+  // если элемент на который не содержит класс "gallery__image", то выходим из функции, а если есть то продолжаем выполнять основной код
   if (!event.target.classList.contains("gallery__image")) {
     return;
   }
+  // записываем в константу ссылку на оригинальную картинку
   const currentImageUrl = event.target.dataset.source;
+  // вызываем функцию открытия модального окна
   openModal(currentImageUrl);
 }
+// функция открытия модального окна basicLightbox
 function openModal(currentImageUrl) {
-  const modalFromLib = basicLightbox.create(
+  const createModal = basicLightbox.create(
     `
       <img
       class="modal__image"
@@ -45,6 +51,5 @@ function openModal(currentImageUrl) {
           />
 `
   );
-
-  modalFromLib.show();
+  createModal.show();
 }

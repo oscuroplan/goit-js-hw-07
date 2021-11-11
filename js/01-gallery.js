@@ -5,7 +5,7 @@ console.log(galleryItems);
 
 // находим div галлереи
 const galleryEl = document.querySelector("div.gallery");
-console.log(galleryEl);
+// console.log(galleryEl);
 
 // создаем в памяти список изображений с атрибутами, полученные из galleryItems
 const listEl = galleryItems
@@ -52,4 +52,20 @@ function onOpenModal(currentImageUrl) {
 `
   );
   createModal.show();
+  // включаем слушателя
+  window.addEventListener("keydown", escKeyCloseModal);
+}
+
+function escKeyCloseModal(event) {
+  // находим модалку
+  const modal = document.querySelector("div.basicLightbox");
+  // удаляем модалку
+  // console.log(event.code);
+  if (event.code === "Escape") {
+    modal.remove();
+  }
+
+  // отключаем слушателя
+  window.removeEventListener("keydown", escKeyCloseModal);
+  // console.log(modal);
 }

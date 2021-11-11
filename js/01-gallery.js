@@ -43,8 +43,6 @@ function replacementLinkImg(event) {
 }
 // функция открытия модального окна basicLightbox
 function onOpenModal(currentImageUrl) {
-  // прослушиваем нажатия при открытии модалки
-  window.addEventListener("keydown", onEscKeyPress);
   const createModal = basicLightbox.create(
     `
       <img

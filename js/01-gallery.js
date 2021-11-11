@@ -59,13 +59,13 @@ function onOpenModal(currentImageUrl) {
 function escKeyCloseModal(event) {
   // находим модалку
   const modal = document.querySelector("div.basicLightbox");
+
   // удаляем модалку
   // console.log(event.code);
   if (event.code === "Escape") {
     modal.remove();
+    // отключаем слушателя
+    window.removeEventListener("keydown", escKeyCloseModal);
+    // console.log(modal);
   }
-
-  // отключаем слушателя
-  window.removeEventListener("keydown", escKeyCloseModal);
-  // console.log(modal);
 }

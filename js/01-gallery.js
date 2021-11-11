@@ -39,10 +39,12 @@ function replacementLinkImg(event) {
   // записываем в константу ссылку на оригинальную картинку
   const currentImageUrl = event.target.dataset.source;
   // вызываем функцию открытия модального окна
-  openModal(currentImageUrl);
+  onOpenModal(currentImageUrl);
 }
 // функция открытия модального окна basicLightbox
-function openModal(currentImageUrl) {
+function onOpenModal(currentImageUrl) {
+  // прослушиваем нажатия при открытии модалки
+  window.addEventListener("keydown", onEscKeyPress);
   const createModal = basicLightbox.create(
     `
       <img

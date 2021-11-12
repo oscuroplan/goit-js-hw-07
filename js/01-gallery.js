@@ -54,6 +54,11 @@ function onOpenModal(currentImageUrl) {
   createModal.show();
   // включаем слушателя
   window.addEventListener("keydown", escKeyCloseModal);
+
+  // находим модалку
+  const modal = document.querySelector("div.basicLightbox");
+  // вешаем на нее слушателя кликов для отключения слушателя кликов и кнопок при закрытии по клику
+  modal.addEventListener("click", remoweClickModalListner);
 }
 
 function escKeyCloseModal(event) {
@@ -68,4 +73,10 @@ function escKeyCloseModal(event) {
     window.removeEventListener("keydown", escKeyCloseModal);
     // console.log(modal);
   }
+}
+
+// отключаем всех слушателей после закрытия модалки по клику
+function remoweClickModalListner() {
+  window.removeEventListener("click", remoweClickModalListner);
+  window.removeEventListener("keydown", escKeyCloseModal);
 }
